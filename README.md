@@ -7,9 +7,39 @@
 PC installed with SCILAB. 
 
 # PROGRAM: 
-
-
+```
+clc;
+close;
+M=input('Enter the Odd Filter Length =');
+Wc=input('Enter the Digital Cut off frequency =');
+alpha=(M-1)/2;
+for n=1:M
+if (n==alpha+1) then
+hd(n)=Wc/%pi;
+else
+hd(n)=sin(Wc*((n-1)-alpha))/(((n-1)-alpha)*%pi);
+end
+end
+for n=1:M
+W(n)=1-((2*abs((n-1)-((M-1)/2)))/(M-1));
+end
+h=hd.*W;
+disp(h,'Filter Coefficients are');
+[hzm,fr]=frmag(h,256);
+subplot(2,1,1);
+plot(2*fr,hzm);
+xlabel('Normalized Digital Frequency w');
+ylabel('Magnitude');
+title('Frequency Response of FIR LPF using Bartlett Window');
+hzm_dB=20*log10(hzm);
+subplot(2,1,2);
+plot(2*fr,hzm_dB);
+xlabel('Normalized Digital Frequency W');
+ylabel('Magnitude in dB');
+title('Frequency Response of FIR LPF using Bartlett Window');
+```
 # OUTPUT: 
+<img width="718" height="585" alt="image" src="https://github.com/user-attachments/assets/2465ad1c-d244-4975-8d9a-2698c35b3283" />
 
 
 # RESULT: 
@@ -22,9 +52,39 @@ Thus design of low pass FIR digital filter using-Barlett-Window waveforms were p
 PC installed with SCILAB. 
 
 # PROGRAM: 
-
-
+```
+clc;
+close;
+M=input('Enter the Odd Filter Length =');
+Wc=input('Enter the Digital Cut off frequency =');
+alpha=(M-1)/2;
+for n=1:M
+if (n==alpha+1) then
+hd(n)=1-Wc/%pi;
+else
+hd(n)=-sin(Wc*((n-1)-alpha))/(((n-1)-alpha)*%pi);
+end
+end
+for n=1:M
+W(n)=1-((2*abs((n-1)-((M-1)/2)))/(M-1));
+end
+h=hd.*W;
+disp(h,'Filter Coefficients are');
+[hzm,fr]=frmag(h,256);
+subplot(2,1,1);
+plot(2*fr,hzm);
+xlabel('Normalized Digital Frequency w');
+ylabel('Magnitude');
+title('Frequency Response of FIR HPF using Bartlett Window');
+hzm_dB=20*log10(hzm);
+subplot(2,1,2);
+plot(2*fr,hzm_dB);
+xlabel('Normalized Digital Frequency W');
+ylabel('Magnitude in dB');
+title('Frequency Response of FIR HPF using Bartlett Window');
+```
 # OUTPUT: 
+<img width="717" height="585" alt="image" src="https://github.com/user-attachments/assets/bf77ef2a-0f35-4ee5-899d-853086fddc8f" />
 
 
 # RESULT: 
@@ -36,9 +96,42 @@ Thus design of HIGH pass FIR digital filter using-Barlett-Window waveforms were 
 PC installed with SCILAB. 
 
 # PROGRAM: 
-
+```
+clc;
+close;
+M=input('Enter the Odd Filter Length =');
+Wc=input('Enter the Digital Cut off frequency =');
+Wc2=Wc(2);
+Wc1=Wc(1);
+alpha=(M-1)/2;
+for n=1:M
+if (n==alpha+1) then
+hd(n)=(Wc2-Wc1)/%pi;
+else
+hd(n)=(sin(Wc2*((n-1)-alpha))-sin(Wc1*((n-1)-alpha)))/(((n-1)-alpha)*%pi);
+end
+end
+for n=1:M
+W(n)=1-((2*abs((n-1)-((M-1)/2)))/(M-1));
+end
+h=hd.*W;
+disp(h,'Filter Coefficients are');
+[hzm,fr]=frmag(h,256);
+subplot(2,1,1);
+plot(2*fr,hzm);
+xlabel('Normalized Digital Frequency w');
+ylabel('Magnitude');
+title('Frequency Response of FIR BPF using Bartlett Window');
+hzm_dB=20*log10(hzm);
+subplot(2,1,2);
+plot(2*fr,hzm_dB);
+xlabel('Normalized Digital Frequency W');
+ylabel('Magnitude in dB');
+title('Frequency Response of FIR BPF using Bartlett Window');
+```
 
 # OUTPUT: 
+<img width="710" height="578" alt="image" src="https://github.com/user-attachments/assets/8f98c74a-1c41-42f6-8e0c-b7867db1c15d" />
 
 
 # RESULT: 
@@ -50,9 +143,42 @@ Thus design of BAND pass FIR digital filter using-Barlettr-Window waveforms were
 PC installed with SCILAB. 
 
 # PROGRAM: 
-
+```
+clc;
+close;
+M=input('Enter the Odd Filter Length =');
+Wc=input('Enter the Digital Cut off frequency =');
+Wc2=Wc(2);
+Wc1=Wc(1);
+alpha=(M-1)/2;
+for n=1:M
+if (n==alpha+1) then
+hd(n)=1-((Wc2-Wc1)/%pi);
+else
+hd(n)=(sin(Wc1*((n-1)-alpha))-sin(Wc2*((n-1)-alpha)))/(((n-1)-alpha)*%pi);
+end
+end
+for n=1:M
+W(n)=1-((2*abs((n-1)-((M-1)/2)))/(M-1));
+end
+h=hd.*W;
+disp(h,'Filter Coefficients are');
+[hzm,fr]=frmag(h,256);
+subplot(2,1,1);
+plot(2*fr,hzm);
+xlabel('Normalized Digital Frequency w');
+ylabel('Magnitude');
+title('Frequency Response of FIR BSF using Bartlett Window');
+hzm_dB=20*log10(hzm);
+subplot(2,1,2);
+plot(2*fr,hzm_dB);
+xlabel('Normalized Digital Frequency W');
+ylabel('Magnitude in dB');
+title('Frequency Response of FIR BSF using Bartlett Window');
+```
 
 # OUTPUT: 
+<img width="711" height="578" alt="image" src="https://github.com/user-attachments/assets/90fcd896-1346-496e-b8e8-90cdbe275bd3" />
 
 
 # RESULT: 
